@@ -1,5 +1,6 @@
 // Component imports
 import { useEffect } from "react";
+import { Card } from "react-bootstrap";
 
 // MovieItem gets "props" data which contains 1 movie data 
 // from parent Movies
@@ -11,10 +12,16 @@ const MovieItem = (props) => {
 
     return (
         <div>
-            {/*Creating Movie Image Card*/}
-            <h3>{props.mymovie.Title}</h3>
-            <p>{props.mymovie.Year}</p>
-            <img src={props.mymovie.Poster}></img>
+            <Card>
+                {/*Creating Movie Image Card with bootstrap*/}
+                <Card.Header>{props.mymovie.Title}</Card.Header>
+                <Card.Body>
+                    <blockquote className="blockquote mb-0">
+                        <img src={props.mymovie.Poster} alt={props.mymovie.Title} />
+                        <footer>{props.mymovie.Year}</footer>
+                    </blockquote>
+                </Card.Body>
+            </Card>
         </div>
     );
 }
