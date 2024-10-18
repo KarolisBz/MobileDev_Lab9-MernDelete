@@ -6,6 +6,7 @@ import axios from "axios";
 // Read content to be imported
 const Read = () => {
     // using states we set movies - 'useState' allows functional components to use states
+    // that work like globall vars but with extra computing in between if required
     const [movies, setMovies] = useState([]);
 
     // react hook synchronize with server api (fires on component loading)
@@ -19,7 +20,7 @@ const Read = () => {
             .catch((error) => {
                 console.log(error)
             });
-    }, []);
+    }, []); // table never changes, so only runs on page load
 
     return (
         <div>
