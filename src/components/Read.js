@@ -12,7 +12,7 @@ const Read = () => {
     // react hook synchronize with server api (fires on component loading)
     useEffect(() => {
         // asynchronous, works in the background to "fetch" json data via response
-        axios.get('https://jsonblob.com/api/jsonblob/1287718524221775872')
+        axios.get('http://localhost:4000/api/movies')
             .then((response) => {
                 console.log(response.data);
                 setMovies(response.data.movies)
