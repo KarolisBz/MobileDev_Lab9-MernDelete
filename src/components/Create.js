@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios"; // axio s is used here to fech data in reach applications asynchronously
 
 // Read content to be imported
 const Create = () => {
@@ -10,9 +11,22 @@ const Create = () => {
 
   // logs form information
   const handleSubmit = (e) => {
-    e.preventDefault(); // stops from being fired more than once
-    console.log(title, year, poster);
-  }
+    // stops from being fired more than once
+    e.preventDefault();
+    
+    console.log(`Title: ${title}, Year: ${year}, Poster: ${poster}`);
+    
+    const movie = {
+      title: title,
+      year: year,
+      poster: poster
+    };
+    
+    // dynamically pos and rendered in the frontend asynchronously
+    axios.post('http://localhost:4000/api/movies', movie)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err.data));
+  };
 
   return (
     <div>
