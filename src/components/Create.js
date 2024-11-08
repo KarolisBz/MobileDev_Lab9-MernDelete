@@ -22,7 +22,7 @@ const Create = () => {
       poster: poster
     };
     
-    // dynamically pos and rendered in the frontend asynchronously
+    // dynamically posts and rendered in the frontend asynchronously
     axios.post('http://localhost:4000/api/movies', movie)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err.data));

@@ -47,6 +47,7 @@ app.get('/api/movies', (req, res) => {
         }
     ]
 
+    // give back respone in json format with status 200 'okay'
     res.status(200).json({movies})
 });
 
