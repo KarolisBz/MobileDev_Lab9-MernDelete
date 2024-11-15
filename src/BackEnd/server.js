@@ -52,6 +52,12 @@ app.get('/api/movies', async(req, res) => {
     res.status(200).json({movies})
 });
 
+// getting movie based on ID parameter which is passed via URL
+app.get('/api/movie/:id', async (req, res) => {
+    const movie = await Movie.findById(req.params.id); // searches movie collection for said ID
+    res.send(movie); // sends back selected movie in JSON
+});
+
 // post request accepts data
 app.post('/api/movies',(req,res) => {
     // logs movie object passed onto the server
