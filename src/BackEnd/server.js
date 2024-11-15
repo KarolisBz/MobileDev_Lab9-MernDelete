@@ -20,6 +20,29 @@ app.use(function(req, res, next) {
   next();
 });
 
+// connecting to mongoose db14
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://admin:admin@cluster0.ropg5.mongodb.net/DB14');
+
+// creating a movie schema
+const movieSchema = new mongoose.Schema({
+    title: String,
+    year: String,
+    poster: String
+  });
+
+// added data model which is a blueprint for defining the structure of data within a MongoDB collection
+const Movie = mongoose.model('Movie', movieSchema);
+
+// creating a method to add new movie records
+app.post('/api/movies', async (req, res) => {
+    const { title, year, poster } = req.body; // fetching passed data
+    const newMovie = new Movie({ title, year, poster }); // creating new movie object
+    await newMovie.save(); // execute async while blocking code to not post movie created before movie was created
+
+    res.status(201).json({ message: 'Movie created successfully', movie: newMovie });
+})
+
 // if we get a request, 'Welcome to Data Respresentation & Querying'
 app.get('/api/movies', (req, res) => {
     // all the movie data
