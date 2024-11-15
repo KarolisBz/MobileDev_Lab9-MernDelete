@@ -44,9 +44,30 @@ app.post('/api/movies', async (req, res) => {
 })
 
 // if we get a request, 'Welcome to Data Respresentation & Querying'
-app.get('/api/movies', (req, res) => {
-    // all the movie data
-    const movies = [
+app.get('/api/movies', async(req, res) => {
+    // all the movie data fetched async
+    const movies = await Movie.find({}); // empty object {} means it fetches all objects in the database
+
+    // give back respone in json format with status 200 'okay'
+    res.status(200).json({movies})
+});
+
+// post request accepts data
+app.post('/api/movies',(req,res) => {
+    // logs movie object passed onto the server
+    console.log(`Title: ${req.body.title}, Year: ${req.body.year}, Poster: ${req.body.poster}`);
+
+    // telling client movie has been added
+    res.send("Movies Added!");
+})
+
+// severs listens for a http request coming in
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
+
+/*
+[
         {
             "Title": "Avengers: Infinity War",
             "Year": "2018",
@@ -69,21 +90,4 @@ app.get('/api/movies', (req, res) => {
             "Poster": "https://m.media-amazon.com/images/M/MV5BNDQ4YzFmNzktMmM5ZC00MDZjLTk1OTktNDE2ODE4YjM2MjJjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
         }
     ]
-
-    // give back respone in json format with status 200 'okay'
-    res.status(200).json({movies})
-});
-
-// post request accepts data
-app.post('/api/movies',(req,res) => {
-    // logs movie object passed onto the server
-    console.log(`Title: ${req.body.title}, Year: ${req.body.year}, Poster: ${req.body.poster}`);
-
-    // telling client movie has been added
-    res.send("Movies Added!");
-})
-
-// severs listens for a http request coming in
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+*/
