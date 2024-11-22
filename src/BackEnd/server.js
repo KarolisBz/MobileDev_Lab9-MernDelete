@@ -43,6 +43,18 @@ app.post('/api/movies', async (req, res) => {
     res.status(201).json({ message: 'Movie created successfully', movie: newMovie });
 })
 
+// route fetches a specific movie by its ID
+app.get('/api/movies/:id', async (req, res) => {
+    let movie = await Movie.findById({ _id: req.params.id });
+    res.send(movie);
+});
+
+// route updates a specific movie’s information in async and updates details in req.body
+app.put('/api/movies/:id', async (req, res) => {
+    let movie = await Movie.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.send(movie);
+});
+
 // if we get a request, 'Welcome to Data Respresentation & Querying'
 app.get('/api/movies', async(req, res) => {
     // all the movie data fetched async

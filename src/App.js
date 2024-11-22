@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Content from './components/Content';
 import Read from './components/Read';
 import Create from './components/Create';
+import Edit from './components/Edit';
 
 // Added Navbar which uses Reacts ROUTER LINK to navigate to different "Components" using client side routing
 // Client side routing is the clients ability to change the URL without making another request to the server allowing
@@ -23,7 +24,7 @@ function App() {
         <Route path="/home" element={<Content/>} />
         <Route path="/read" element={<Read/>} />
         <Route path="/create" element={<Create/>} />
-        <Route path='/edit/:id' element={<Edit />} /> {/*allows user to navigate to edit component for specific movie*/}
+        <Route path='/edit/:id' element={<Edit/>} /> {/*allows user to navigate to edit component for specific movie*/}
       </Routes>
       {/* External Footer componenet*/}
       <Footer />
