@@ -1,6 +1,7 @@
 // Component imports
 import { useEffect } from "react";
 import { Card } from "react-bootstrap";
+import { Link } from 'react-router-dom'; // navigate to a new route without refreshing the page
 
 // MovieItem gets "props" data which contains 1 movie data 
 // from parent Movies
@@ -21,6 +22,8 @@ const MovieItem = (props) => {
                         <footer>{props.mymovie.year}</footer>
                     </blockquote>
                 </Card.Body>
+                {/* Links user to page for movie via their passed movie ID and path*/}
+                <Link to={"/edit/" + props.mymovie._id} className="btn btn-primary">Edit</Link>
             </Card>
         </div>
     );
