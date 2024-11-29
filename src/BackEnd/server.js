@@ -83,7 +83,9 @@ app.post('/api/movies',(req,res) => {
 app.delete('/api/movie/:id', async (req, res) => {
   
     console.log('Deleting movie with ID:', req.params.id);
+    // removing the specified movie from the MongoDB database.
     const movie = await Movie.findByIdAndDelete(req.params.id);
+    // Sends a success or error response based on the outcome of the deletion
     res.status(200).send({ message: "Movie deleted successfully", movie });
 });
 

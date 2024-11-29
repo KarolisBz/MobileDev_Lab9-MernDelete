@@ -9,7 +9,7 @@ const Movies = (props) => {
     return props.myMovies.map(
         (movie) => {
             /*Sending each movie data to MovieItem to create a card with a unique KEY */
-            return <MovieItem mymovie={movie} key={movie._id}  Reload={props.ReloadData}/>
+            return <MovieItem mymovie={movie} key={movie._id}  Reload={props.ReloadData}/> // passes reloadData function via props for easy data reloading
         }
     )
 }

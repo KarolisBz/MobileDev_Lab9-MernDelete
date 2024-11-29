@@ -17,7 +17,7 @@ const MovieItem = (props) => {
         e.preventDefault();
         axios.delete('http://localhost:4000/api/movie/' + props.mymovie._id)
             .then(() => {
-                props.Reload(); // Refresh the movie list after deletion
+                props.Reload(); // Refresh the movie list after deletion from function passed down in props
             })
             .catch((error) => {
                 console.error("Error deleting movie:", error);
@@ -38,10 +38,8 @@ const MovieItem = (props) => {
                 {/* Links user to page for movie via their passed movie ID and path*/}
                 <Link to={"/edit/" + props.mymovie._id} className="btn btn-primary">Edit</Link>
 
-                <div>
-                    {/* Other movie details */}
-                    <Button variant="danger" onClick={handleDelete}>Delete</Button>
-                </div>
+                {/* Delete movie btn that fires handle Delete*/}
+                <Button variant="danger" onClick={handleDelete}>Delete</Button>
             </Card>
         </div>
     );
