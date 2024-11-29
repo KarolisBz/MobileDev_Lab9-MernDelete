@@ -79,6 +79,14 @@ app.post('/api/movies',(req,res) => {
     res.send("Movies Added!");
 })
 
+// handles deleting of movies on server side
+app.delete('/api/movie/:id', async (req, res) => {
+  
+    console.log('Deleting movie with ID:', req.params.id);
+    const movie = await Movie.findByIdAndDelete(req.params.id);
+    res.status(200).send({ message: "Movie deleted successfully", movie });
+});
+
 // severs listens for a http request coming in
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
